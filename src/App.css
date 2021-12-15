@@ -1,38 +1,43 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  --s: 100px;
+  --m: 1px;
+  --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  font-size: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container div {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s) * 1.1547);
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  background: rgb(107, 71, 71);
+  background-size: cover;
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
+  overflow: hidden;
+}
+
+.container div:hover {
+  background-image: url("./1915.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container div:nth-child(odd) {
+  background: rgb(117, 136, 117);
+}
+.container::before {
+  content: "";
+  width: calc(var(--s) / 2 + var(--m));
+  float: left;
+  height: 120%;
+  shape-outside: repeating-linear-gradient(
+    #0000 0 calc(var(--f) - 3px),
+    #000 0 var(--f)
+  );
 }
