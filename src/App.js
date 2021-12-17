@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Modal } from "antd";
 import "./App.css";
 import img from "./1915.jpg";
 import styled, { css } from "styled-components";
@@ -37,39 +38,59 @@ export const Hex = styled.div`
   overflow: hidden;
 `;
 
+export const Md = styled(Modal)`
+  overflow: hidden;
+  max-height: 100vh;
+
+  &.ant-modal {
+    max-width: unset;
+    margin: 0 !important;
+    top: 0;
+    bottom: 0;
+  }
+`;
+
 function App() {
-  const [pos, setPos] = useState({ x: 800, y: 300, scale: 1 });
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   let arr = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 70; i++) {
     arr.push({ key: i, color: "#c1c1c1", img: img });
   }
 
-  const onScroll = (e) => {
-    const delta = e.deltaY * -0.01;
-    const newScale = pos.scale + delta;
-
-    const ratio = 1 - newScale / pos.scale;
-
-    setPos({
-      scale: newScale,
-      x: pos.x + (e.clientX - pos.x) * ratio,
-      y: pos.y + (e.clientY - pos.y) * ratio,
-    });
+  const handleOk = () => {
+    setIsModalVisible(false);
   };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
   return (
     <div className="main">
+      {
+        <Md
+          title={null}
+          visible={isModalVisible}
+          onCancel={handleCancel}
+          footer={null}
+          width="100%"
+          closable={false}
+        >
+          <img src={img} alt="" onClick={handleCancel} />
+        </Md>
+      }
       <div className="container">
         {arr?.map((item) => (
           <Hex
-            onWheelCapture={onScroll}
             key={item?.key}
             $color={item?.color}
             $img={item?.img}
-            style={{
-              transformOrigin: "0 0",
-              transform: `translate(${pos.x}px, ${pos.y}px) scale(${pos.scale})`,
-            }}
+            onClick={showModal}
           />
         ))}
       </div>
