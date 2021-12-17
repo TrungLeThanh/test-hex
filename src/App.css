@@ -5,39 +5,13 @@
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
 }
 
-.container {
-  font-size: 0;
-}
-
-.container div {
-  width: var(--s);
-  margin: var(--m);
-  height: calc(var(--s) * 1.1547);
-  display: inline-block;
-  font-size: initial;
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  background: rgb(107, 71, 71);
-  background-size: cover;
-  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
-  overflow: hidden;
-}
-
-.container div:hover {
-  background-image: url("./1915.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.container div:nth-child(odd) {
-  background: rgb(117, 136, 117);
-}
 .container::before {
   content: "";
-  width: calc(var(--s) / 2 + var(--m));
+  width: calc(100px / 2 + 1px);
   float: left;
   height: 120%;
   shape-outside: repeating-linear-gradient(
-    #0000 0 calc(var(--f) - 3px),
-    #000 0 var(--f)
+    #0000 0 calc(calc(1.732 * 100px + 4 * 1px - 1px) - 3px),
+    #000 0 calc(1.732 * 100px + 4 * 1px - 1px)
   );
 }
