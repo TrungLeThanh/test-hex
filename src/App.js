@@ -58,10 +58,6 @@ function App() {
     arr.push({ key: i, color: "#c1c1c1", img: img });
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
